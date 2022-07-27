@@ -9,7 +9,7 @@
 	url = https://github.com/pigeatgarlic/webrtc-proxy
 [submodule "signaling"]
 	path = signaling
-	url = https://github.com/acentior/oneplay-signaling-server
+	url = https://github.com/pigeatgarlic/oneplay-signaling
 [submodule "browser"]
 	path = browser
-	url = https://github.com/acentior/oneplayer-client-browser
+	url = https://github.com/pigeatgarlic/oneplayer-browser
