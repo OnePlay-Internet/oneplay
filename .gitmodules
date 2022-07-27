@@ -1,0 +1,15 @@
+[submodule "sunshine-util"]
+	path = sunshine-util
+	url = https://github.com/pigeatgarlic/sunshine-util
+[submodule "DevSim"]
+	path = DevSim
+	url = https://github.com/pigeatgarlic/DevSim
+[submodule "webrtc-proxy"]
+	path = webrtc-proxy
+	url = https://github.com/pigeatgarlic/webrtc-proxy
+[submodule "signaling"]
+	path = signaling
+	url = https://github.com/acentior/oneplay-signaling-server
+[submodule "browser"]
+	path = browser
+	url = https://github.com/acentior/oneplayer-client-browser
