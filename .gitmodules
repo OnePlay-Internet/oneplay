@@ -7,9 +7,9 @@
 [submodule "webrtc-proxy"]
 	path = webrtc-proxy
 	url = https://github.com/pigeatgarlic/webrtc-proxy
-[submodule "signaling"]
-	path = signaling
-	url = https://github.com/pigeatgarlic/oneplay-signaling
 [submodule "browser"]
 	path = browser
 	url = https://github.com/pigeatgarlic/oneplayer-browser
+[submodule "signaling"]
+	path = signaling
+	url = https://github.com/pigeatgarlic/oneplayer-signaling
