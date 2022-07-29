@@ -10,3 +10,6 @@
 [submodule "signaling-server"]
 	path = signaling-server
 	url = https://github.com/pigeatgarlic/signaling
+[submodule "browser-client"]
+	path = browser-client
+	url = https://github.com/pigeatgarlic/webrtc-browser
