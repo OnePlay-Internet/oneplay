@@ -1,6 +1,6 @@
 OnePlay
 ===================================
-High performance and low latency cloud gaming with OnePlay
+High performance and low latency cloud gaming 
 
 
 
