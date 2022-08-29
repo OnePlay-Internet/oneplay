@@ -13,3 +13,6 @@
 [submodule "browser-client"]
 	path = browser-client
 	url = https://github.com/pigeatgarlic/webrtc-browser
+[submodule "auth-temp"]
+	path = auth-temp
+	url = https://github.com/pigeatgarlic/auth-temp

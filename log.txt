@@ -1,0 +1,46 @@
+LEVEL: info                    ||FILE: windows_helper.cpp:322        z||TIMESTAMP: (min:0|sec:0|mili:0|micro:0|nano:0)                || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          z||TIMESTAMP: (min:0|sec:0|mili:44|micro:629|nano:629)           || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:44|micro:629|nano:629)
+LEVEL: info                    ||FILE: windows_helper.cpp:262        z||TIMESTAMP: (min:0|sec:0|mili:45|micro:662|nano:662)           || MESSAGE: Compiling shaders...
+LEVEL: error                   ||FILE: windows_helper.cpp:217        z||TIMESTAMP: (min:0|sec:0|mili:45|micro:662|nano:662)           || MESSAGE: Couldn't compile
+LEVEL: error                   ||FILE: display_vram.cpp:223          z||TIMESTAMP: (min:0|sec:0|mili:45|micro:662|nano:662)           || MESSAGE: unable to initialize hlsl
+LEVEL: error                   ||FILE: display_base.cpp:58           z||TIMESTAMP: (min:0|sec:0|mili:45|micro:662|nano:662)           || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        z||TIMESTAMP: (min:0|sec:0|mili:45|micro:662|nano:662)           || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          z||TIMESTAMP: (min:0|sec:0|mili:54|micro:517|nano:517)           || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:54|micro:517|nano:517)
+LEVEL: error                   ||FILE: display_base.cpp:306          z||TIMESTAMP: (min:0|sec:0|mili:479|micro:598|nano:598)          || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           z||TIMESTAMP: (min:0|sec:0|mili:479|micro:598|nano:598)          || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        z||TIMESTAMP: (min:0|sec:0|mili:479|micro:598|nano:598)          || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          z||TIMESTAMP: (min:0|sec:0|mili:488|micro:580|nano:580)          || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:488|micro:580|nano:580)
+LEVEL: error                   ||FILE: display_base.cpp:306          z||TIMESTAMP: (min:0|sec:0|mili:906|micro:365|nano:365)          || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           z||TIMESTAMP: (min:0|sec:0|mili:906|micro:365|nano:365)          || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        z||TIMESTAMP: (min:0|sec:0|mili:906|micro:365|nano:365)          || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          z||TIMESTAMP: (min:0|sec:0|mili:914|micro:853|nano:853)          || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:914|micro:853|nano:853)
+LEVEL: error                   ||FILE: display_base.cpp:306          z||TIMESTAMP: (min:0|sec:1|mili:331|micro:615|nano:615)          || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           z||TIMESTAMP: (min:0|sec:1|mili:331|micro:615|nano:615)          || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        z||TIMESTAMP: (min:0|sec:1|mili:331|micro:615|nano:615)          || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          z||TIMESTAMP: (min:0|sec:1|mili:340|micro:591|nano:591)          || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:1|mili:340|micro:591|nano:591)
+LEVEL: error                   ||FILE: display_base.cpp:306          z||TIMESTAMP: (min:0|sec:1|mili:758|micro:591|nano:591)          || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           z||TIMESTAMP: (min:0|sec:1|mili:758|micro:591|nano:591)          || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: screencoder_session.cpp:72    z||TIMESTAMP: (min:0|sec:1|mili:758|micro:591|nano:591)          || MESSAGE: no match display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        h||TIMESTAMP: (min:0|sec:0|mili:0|micro:0|nano:0)                || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          h||TIMESTAMP: (min:0|sec:0|mili:45|micro:658|nano:658)           || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:45|micro:658|nano:658)
+LEVEL: info                    ||FILE: windows_helper.cpp:262        h||TIMESTAMP: (min:0|sec:0|mili:46|micro:176|nano:176)           || MESSAGE: Compiling shaders...
+LEVEL: error                   ||FILE: windows_helper.cpp:217        h||TIMESTAMP: (min:0|sec:0|mili:46|micro:696|nano:696)           || MESSAGE: Couldn't compile
+LEVEL: error                   ||FILE: display_vram.cpp:223          h||TIMESTAMP: (min:0|sec:0|mili:46|micro:696|nano:696)           || MESSAGE: unable to initialize hlsl
+LEVEL: error                   ||FILE: display_base.cpp:58           h||TIMESTAMP: (min:0|sec:0|mili:46|micro:696|nano:696)           || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        h||TIMESTAMP: (min:0|sec:0|mili:46|micro:696|nano:696)           || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          h||TIMESTAMP: (min:0|sec:0|mili:56|micro:542|nano:542)           || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:56|micro:542|nano:542)
+LEVEL: error                   ||FILE: display_base.cpp:306          h||TIMESTAMP: (min:0|sec:0|mili:475|micro:257|nano:257)          || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           h||TIMESTAMP: (min:0|sec:0|mili:475|micro:257|nano:257)          || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        h||TIMESTAMP: (min:0|sec:0|mili:475|micro:257|nano:257)          || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          h||TIMESTAMP: (min:0|sec:0|mili:483|micro:725|nano:725)          || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:483|micro:725|nano:725)
+LEVEL: error                   ||FILE: display_base.cpp:306          h||TIMESTAMP: (min:0|sec:0|mili:895|micro:131|nano:131)          || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           h||TIMESTAMP: (min:0|sec:0|mili:895|micro:131|nano:131)          || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        h||TIMESTAMP: (min:0|sec:0|mili:895|micro:131|nano:131)          || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          h||TIMESTAMP: (min:0|sec:0|mili:904|micro:88|nano:88)            || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:0|mili:904|micro:88|nano:88)
+LEVEL: error                   ||FILE: display_base.cpp:306          h||TIMESTAMP: (min:0|sec:1|mili:319|micro:85|nano:85)            || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           h||TIMESTAMP: (min:0|sec:1|mili:319|micro:85|nano:85)            || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: windows_helper.cpp:322        h||TIMESTAMP: (min:0|sec:1|mili:319|micro:85|nano:85)            || MESSAGE: Detecting monitors...
+LEVEL: warning                 ||FILE: display_base.cpp:256          h||TIMESTAMP: (min:0|sec:1|mili:328|micro:61|nano:61)            || MESSAGE: Failed to set realtime GPU priority. Please run application as administrator for optimal performance(min:0|sec:1|mili:328|micro:61|nano:61)
+LEVEL: error                   ||FILE: display_base.cpp:306          h||TIMESTAMP: (min:0|sec:1|mili:742|micro:551|nano:551)          || MESSAGE: DuplicateOutput Failed
+LEVEL: error                   ||FILE: display_base.cpp:58           h||TIMESTAMP: (min:0|sec:1|mili:742|micro:551|nano:551)          || MESSAGE: unable to create display
+LEVEL: info                    ||FILE: screencoder_session.cpp:72    h||TIMESTAMP: (min:0|sec:1|mili:742|micro:551|nano:551)          || MESSAGE: no match display
