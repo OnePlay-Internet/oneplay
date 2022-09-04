@@ -12,5 +12,10 @@ cd sunshine-util
 go build  examples/go_webrtc
 cd ..
 
+cd DevSim
+dotnet build .
+cd ..
+
 robocopy daemon package/bin daemon.exe
 robocopy sunshine-util package/bin go_webrtc.exe
+robocopy DevSim/bin/Debug/net6.0 package/bin 
