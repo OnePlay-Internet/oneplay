@@ -4,11 +4,40 @@ import (
 	"fmt"
 	"net/http"
 	"os/exec"
+	"os"
 	"time"
 )
 
 func main() {
+	engine := "gstreamer"
+	envstr    := "dev"
 	id := 0
+
+	args := os.Args[1:]
+	for i, arg := range args {
+		if arg == "--engine" {
+			engine = args[i+1]
+		} else if arg == "--env" {
+			envstr = args[i+1]
+		} else if arg == "--help" {
+			fmt.Printf("--engine |  encode engine ()\n")
+			return
+		}
+	}
+
+	command := func () string {
+		switch engine{
+		case "gstreamer":
+			return "webrtc-proxy.exe"
+		case "screencoder":
+			return "screencoder.exe"
+		default:
+			return "unknown"
+		}	
+	}()
+	
+
+
 
 	go func ()  {
 		for {
@@ -32,7 +61,7 @@ func main() {
 			}
 
 			fmt.Printf("starting webrtc proxy\n");
-			process := exec.Command("webrtc-proxy.exe","--token",str);
+			process := exec.Command(command,"--token",str,"--env",envstr);
 			process.Start();
 			process.Wait();
 		}
@@ -47,4 +76,7 @@ func main() {
 			process.Wait();
 		}	
 	} ()
+
+	shutdown := make(chan bool)
+	<-shutdown
 }

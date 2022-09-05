@@ -9,13 +9,24 @@ go build -o daemon.exe
 cd ..
 
 cd sunshine-util
-go build  examples/go_webrtc
+go build  -o screencoder.exe  examples/go_webrtc/main.go
 cd ..
+
+cd webrtc-proxy
+go build  -o webrtc-proxy.exe cmd/agent/main.go
+cd ..
+
 
 cd DevSim
 dotnet build .
 cd ..
 
 robocopy daemon package/bin daemon.exe
-robocopy sunshine-util package/bin go_webrtc.exe
+robocopy sunshine-util package/bin screencoder.exe
+robocopy webrtc-proxy package/bin webrtc-proxy.exe
 robocopy DevSim/bin/Debug/net6.0 package/bin 
+
+
+del ".\daemon\daemon.exe"
+del ".\sunshine-util\screencoder.exe"
+del ".\webrtc-proxy\webrtc-proxy.exe"
