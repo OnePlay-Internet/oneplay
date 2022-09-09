@@ -9,7 +9,7 @@ jobs:
     - name: build 
       shell: cmd
       run : |
-        mkdir.bat
+        mkdir.cmd
         git clone https://github.com/OnePlay-Internet/oneplay
         cd oneplay
         robocopy script . 
