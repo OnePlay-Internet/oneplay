@@ -1,5 +1,16 @@
 {
     "files.associations": {
-        "thread": "cpp"
+        ".env": "properties",
+        "*.env": "ini",
+        "thread": "cpp",
+        "bitset": "cpp",
+        "charconv": "cpp",
+        "chrono": "cpp",
+        "filesystem": "cpp",
+        "fstream": "cpp",
+        "memory": "cpp",
+        "optional": "cpp",
+        "xhash": "cpp",
+        "xlocbuf": "cpp"
     }
 }

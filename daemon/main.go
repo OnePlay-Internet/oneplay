@@ -9,9 +9,9 @@ import (
 )
 
 func main() {
-	engine := "gstreamer"
-	envstr    := "dev"
-	id := 0
+	engine 	:= "gstreamer"
+	envstr  := "dev"
+	name 	:= "local"
 
 	args := os.Args[1:]
 	for i, arg := range args {
@@ -19,6 +19,8 @@ func main() {
 			engine = args[i+1]
 		} else if arg == "--env" {
 			envstr = args[i+1]
+		} else if arg == "--name" {
+			name = args[i+1]
 		} else if arg == "--help" {
 			fmt.Printf("--engine |  encode engine ()\n")
 			return
@@ -35,6 +37,10 @@ func main() {
 			return "unknown"
 		}	
 	}()
+
+
+
+
 	
 
 
@@ -42,7 +48,7 @@ func main() {
 	go func ()  {
 		for {
 			time.Sleep(time.Second * 5)
-			resp,err := http.Get(fmt.Sprintf("https://auth.thinkmay.net/auth/server/%d",id))
+			resp,err := http.Get(fmt.Sprintf("https://auth.thinkmay.net/auth/server/%s",name))
 			if err != nil{
 				fmt.Printf("%s\n",err.Error());
 				continue;
@@ -68,6 +74,7 @@ func main() {
 	} ();
 
 
+	if envstr != "dev" {
 	go func ()  {
 		for {
 			fmt.Printf("starting devsim\n");
@@ -76,6 +83,8 @@ func main() {
 			process.Wait();
 		}	
 	} ()
+		
+	}
 
 	shutdown := make(chan bool)
 	<-shutdown
