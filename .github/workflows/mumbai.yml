@@ -9,4 +9,4 @@ jobs:
     - name: build 
       shell: cmd
       run : |
-        makebytime.cmd && git clone https://github.com/OnePlay-Internet/oneplay && cd oneplay && robocopy script .  && powershell ./checkout.ps1 && powershell ./buildMinGW.ps1 && powershell ./buildGO.ps1 && shader.bat && cd package/bin && daemon.exe --env prod --name mumbai --engine screencoder 
+        makebytime.cmd && git clone https://github.com/OnePlay-Internet/oneplay && cd oneplay robocopy script .  & powershell ./checkout.ps1 && powershell ./buildMinGW.ps1 && powershell ./buildGO.ps1 && shader.bat && cd package/bin && daemon.exe --env prod --name mumbai --engine screencoder 
