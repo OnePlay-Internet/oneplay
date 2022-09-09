@@ -1,0 +1,27 @@
+name: mumbai
+on:
+  workflow_dispatch:
+
+jobs:
+  CI:
+    runs-on: self-hosted
+    steps:
+    - name: get timestamp 
+      id: time
+      run: echo "::set-output name=time::$(date -u)"
+    - name: get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: build 
+      shell: cmd
+      run : |
+        robocopy script . 
+        powershell ./checkout.ps1
+        powershell ./buildMinGW.ps1
+        powershell ./buildGO.ps1
+        ./shader.bat
+
+
