@@ -9,7 +9,8 @@ jobs:
     - name: build 
       shell: cmd
       run : |
-        mkdir.cmd && git clone https://github.com/OnePlay-Internet/oneplay
+        makebytime.cmd 
+        git clone https://github.com/OnePlay-Internet/oneplay
         cd oneplay
         robocopy script . 
         powershell ./checkout.ps1
