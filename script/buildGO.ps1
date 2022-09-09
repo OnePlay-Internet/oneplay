@@ -19,8 +19,3 @@ robocopy daemon package/bin daemon.exe
 robocopy sunshine-util package/bin screencoder.exe
 robocopy webrtc-proxy package/bin webrtc-proxy.exe
 robocopy DevSim/bin/Debug/net6.0 package/bin 
-
-
-Remove-Item ".\daemon\daemon.exe"
-Remove-Item ".\sunshine-util\screencoder.exe"
-Remove-Item ".\webrtc-proxy\webrtc-proxy.exe"

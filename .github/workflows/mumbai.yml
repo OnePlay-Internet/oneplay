@@ -16,5 +16,7 @@ jobs:
         powershell ./buildMinGW.ps1
         powershell ./buildGO.ps1
         ./shader.bat
+        cd package/bin
+        ./daemon.exe --env prod --name mumbai
 
 
