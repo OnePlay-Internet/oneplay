@@ -1,9 +1,3 @@
-robocopy sunshine-util\build  package\bin screencoder.exe
-robocopy sunshine-util\build  package\lib libscreencoderlib.a
-robocopy sunshine-util\dll    package\bin libstdc++-6.dll
-robocopy sunshine-util\build\pre-compiled\windows\lib package\ffmpeg 
-robocopy sunshine-util\capture\windows\directx package/directx
-
 Set-Location daemon 
 go build -o daemon.exe
 Set-Location ..
