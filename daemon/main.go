@@ -2,11 +2,86 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
-	"os/exec"
 	"os"
+	"os/exec"
+	"os/signal"
+	"syscall"
 	"time"
 )
+
+func findLineEnd(dat []byte) (out [][]byte) {
+	prev := 0;
+	for pos,i := range dat {
+		if i == []byte("\n")[0] {
+			out = append(out, dat[prev:pos]);	
+			prev = pos + 1;
+		}
+	}
+
+	out = append(out, dat[prev:])
+	// for pos,i := range out {
+	// 	count := 0;
+	// 	for _,char := range i {
+	// 		if (char == []byte(" ")[0]) {
+	// 			count++;
+	// 		}
+	// 	}
+	// 	if count == len(i)  && pos > 0{
+	// 		out = append(out[:pos-1],out[pos:]...)
+	// 	}
+	// }
+	return;
+}
+
+func copyAndCapture(w io.Writer, r io.Reader) {
+
+	prefix := []byte("Child process: ")
+	after  := []byte("\n")
+    buf := make([]byte, 1024, 1024)
+    for {
+        n, err := r.Read(buf[:])
+        if n > 0 {
+            d := buf[:n]
+			lines := findLineEnd(d);
+			for _,line := range lines {
+				out := append(prefix,line...)
+				out = append(out,after...)
+
+				_, err := w.Write(out)
+				if err != nil {
+					return;
+				}
+			}
+        }
+        if err != nil {
+            // Read returns io.EOF at the end of file, which is not an error for us
+            if err == io.EOF {
+                err = nil
+            }
+                return;
+        }
+    }
+}
+
+func HandleProcess(cmd *exec.Cmd) {
+	if cmd == nil {
+		return;
+	}
+
+	stdoutIn, _ := cmd.StdoutPipe()
+	stderrIn, _ := cmd.StderrPipe()
+	cmd.Start();
+	go func ()  {
+		copyAndCapture(os.Stdout, stdoutIn)
+	}();
+	go func ()  {
+		copyAndCapture(os.Stdout, stderrIn)
+	}();
+	cmd.Wait();
+
+}
 
 func main() {
 	engine 	:= "gstreamer"
@@ -42,7 +117,21 @@ func main() {
 
 
 	
+	shutdown := make(chan bool)
+	var proxy,devsim *exec.Cmd;
+	go func ()  {
+		chann := make( chan os.Signal) 
+		signal.Notify( chann, syscall.SIGTERM , os.Interrupt);
+		<-chann;
 
+		if proxy != nil {
+			proxy.Process.Kill()	
+		}
+		if devsim != nil {
+			devsim.Process.Kill()	
+		}
+		shutdown<-true;
+	}()
 
 
 	go func ()  {
@@ -67,25 +156,24 @@ func main() {
 			}
 
 			fmt.Printf("starting webrtc proxy\n");
-			process := exec.Command(command,"--token",str,"--env",envstr);
-			process.Start();
-			process.Wait();
+			proxy = exec.Command(command,"--token",str,"--env",envstr);
+			HandleProcess(proxy);
+			time.Sleep(2 * time.Second);
 		}
 	} ();
 
 
-	if envstr != "dev" {
+	if envstr == "dev" {
 	go func ()  {
 		for {
 			fmt.Printf("starting devsim\n");
-			process := exec.Command("DevSim.exe");
-			process.Start();
-			process.Wait();
+			devsim = exec.Command("DevSim.exe");
+			HandleProcess(devsim);
+			time.Sleep(2 * time.Second);
 		}	
 	} ()
 		
 	}
 
-	shutdown := make(chan bool)
 	<-shutdown
 }
