@@ -1,3 +1,6 @@
+$env:PKG_CONFIG_PATH = "C:\gstreamer\1.0\msvc_x86_64\lib\pkgconfig"
+
+
 Set-Location daemon 
 go build -o daemon.exe
 Set-Location ..

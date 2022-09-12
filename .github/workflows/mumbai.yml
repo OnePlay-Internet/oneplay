@@ -1,6 +1,9 @@
 name: mumbai
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - "deploy"
 
 jobs:
   CI:
