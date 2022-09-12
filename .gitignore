@@ -1,4 +1,5 @@
 log.txt
-package/
+package/**
+directx/
 *.exe 
 *.dll
