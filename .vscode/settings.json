@@ -11,6 +11,11 @@
         "memory": "cpp",
         "optional": "cpp",
         "xhash": "cpp",
-        "xlocbuf": "cpp"
+        "xlocbuf": "cpp",
+        "xstring": "cpp",
+        "algorithm": "cpp",
+        "xutility": "cpp",
+        "mutex": "cpp",
+        "condition_variable": "cpp"
     }
 }
