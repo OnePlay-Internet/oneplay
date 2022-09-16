@@ -1,5 +1,7 @@
 log.txt
-package/**
+bin/
 directx/
 *.exe 
 *.dll
+*.zip
+*.msm
