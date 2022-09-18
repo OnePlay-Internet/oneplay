@@ -35,9 +35,8 @@ func findLineEnd(dat []byte) (out [][]byte) {
 	return;
 }
 
-func copyAndCapture(w io.Writer, r io.Reader) {
-
-	prefix := []byte("Child process: ")
+func copyAndCapture(process string,w io.Writer, r io.Reader) {
+	prefix := []byte(fmt.Sprintf("Child process %s):",process) )
 	after  := []byte("\n")
     buf := make([]byte, 1024, 1024)
     for {
@@ -69,31 +68,33 @@ func HandleProcess(cmd *exec.Cmd) {
 	if cmd == nil {
 		return;
 	}
+	processname := cmd.Args[0];
 
 	stdoutIn, _ := cmd.StdoutPipe()
 	stderrIn, _ := cmd.StderrPipe()
 	cmd.Start();
 	go func ()  {
-		copyAndCapture(os.Stdout, stdoutIn)
+		copyAndCapture(processname,os.Stdout, stdoutIn)
 	}();
 	go func ()  {
-		copyAndCapture(os.Stdout, stderrIn)
+		copyAndCapture(processname,os.Stdout, stderrIn)
 	}();
 	cmd.Wait();
 
 }
 
 func main() {
-	engine 	:= "gstreamer"
-	envstr  := "dev"
-	name 	:= "local"
+	command := "screencoder.exe";
+	name 	:= "mumbai"
+	url		:= "https://auth.thinkmay.net"
+	hidport := 5000
+	engine  := "screencoder"
+
 
 	args := os.Args[1:]
 	for i, arg := range args {
-		if arg == "--engine" {
-			engine = args[i+1]
-		} else if arg == "--env" {
-			envstr = args[i+1]
+		if arg == "--url" {
+			url = args[i+1]
 		} else if arg == "--name" {
 			name = args[i+1]
 		} else if arg == "--help" {
@@ -102,16 +103,6 @@ func main() {
 		}
 	}
 
-	command := func () string {
-		switch engine{
-		case "gstreamer":
-			return "webrtc-proxy.exe"
-		case "screencoder":
-			return "screencoder.exe"
-		default:
-			return "unknown"
-		}	
-	}()
 
 
 
@@ -120,24 +111,65 @@ func main() {
 	shutdown := make(chan bool)
 	var proxy,devsim *exec.Cmd;
 	go func ()  {
-		chann := make( chan os.Signal) 
-		signal.Notify( chann, syscall.SIGTERM , os.Interrupt);
-		<-chann;
+		for {
+			chann := make( chan os.Signal,10) 
+			signal.Notify( chann, syscall.SIGTERM , os.Interrupt);
+			<-chann;
 
-		if proxy != nil {
-			proxy.Process.Kill()	
+			if proxy != nil {
+				if proxy.Process != nil {
+					proxy.Process.Kill()	
+				}
+			}
+			if devsim != nil {
+				if devsim.Process != nil {
+					devsim.Process.Kill()	
+				}
+			}
+			shutdown<-true;
 		}
-		if devsim != nil {
-			devsim.Process.Kill()	
-		}
-		shutdown<-true;
 	}()
 
+	count := 1;
+	waitforhid := make(chan bool)
+	go func ()  {
+		for {
+			fmt.Printf("starting devsim %d time on port %d\n",count,hidport);
+			devsim = exec.Command("DevSim.exe",fmt.Sprintf( "--urls=http://localhost:%d",hidport));
+
+			done := make(chan bool)
+			failed := make(chan bool,2)
+			success := make(chan bool)
+			go func ()  {
+				HandleProcess(devsim);
+				failed<-true;
+				done<-true;
+			}()
+			go func ()  {
+				time.Sleep(2 * time.Second);
+				success<-true;
+			}()
+			go func ()  {
+				for {
+					select {
+					case <-success:
+						waitforhid<-true;
+						return;
+					case <-failed:
+						hidport++;
+						done<-true;
+					}
+				}
+			}()
+			<-done
+			count++;
+		}	
+	} ()
 
 	go func ()  {
 		for {
 			time.Sleep(time.Second * 5)
-			resp,err := http.Get(fmt.Sprintf("https://auth.thinkmay.net/auth/server/%s",name))
+			resp,err := http.Get(fmt.Sprintf("%s/auth/server/%s",url,name))
 			if err != nil{
 				fmt.Printf("%s\n",err.Error());
 				continue;
@@ -149,31 +181,23 @@ func main() {
 				fmt.Printf("%s\n",err.Error());
 				continue;
 			}
-			str := string(body[:size]);
-			if str == "none" {
+			token := string(body[:size]);
+			if token == "none" {
 				fmt.Printf("empty token\n");
 				continue;
 			}
 
+			<-waitforhid
 			fmt.Printf("starting webrtc proxy\n");
-			proxy = exec.Command(command,"--token",str,"--env",envstr);
+			proxy = exec.Command(command,
+				"--token",token,
+				"--hid",fmt.Sprintf("http://localhost:%d",hidport),
+				"--engine",engine,);
+
 			HandleProcess(proxy);
 			time.Sleep(2 * time.Second);
 		}
 	} ();
-
-
-	if envstr == "dev" {
-	go func ()  {
-		for {
-			fmt.Printf("starting devsim\n");
-			devsim = exec.Command("DevSim.exe");
-			HandleProcess(devsim);
-			time.Sleep(2 * time.Second);
-		}	
-	} ()
-		
-	}
 
 	<-shutdown
 }

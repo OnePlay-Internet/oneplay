@@ -9,12 +9,12 @@ go build  -o screencoder.exe  examples/go_webrtc/main.go
 Set-Location ..
 
 Set-Location DevSim
-dotnet build .
+dotnet build . --output "bin" --self-contained true --runtime win-x64
 Set-Location ..
 
 robocopy daemon package/bin daemon.exe
 robocopy sunshine-util package/bin screencoder.exe
-robocopy DevSim/bin/Debug/net6.0 package/bin 
+robocopy DevSim/bin package/bin 
 
 Remove-Item "./sunshine-util/screencoder.exe"
 Remove-Item "./daemon/daemon.exe"
