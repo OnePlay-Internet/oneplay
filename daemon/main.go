@@ -97,6 +97,8 @@ func main() {
 			url = args[i+1]
 		} else if arg == "--name" {
 			name = args[i+1]
+		} else if arg == "--engine" {
+			engine = args[i+1]
 		} else if arg == "--help" {
 			fmt.Printf("--engine |  encode engine ()\n")
 			return
