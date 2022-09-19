@@ -169,6 +169,7 @@ func main() {
 	} ()
 
 	go func ()  {
+		<-waitforhid
 		for {
 			time.Sleep(time.Second * 5)
 			resp,err := http.Get(fmt.Sprintf("%s/auth/server/%s",url,name))
@@ -189,7 +190,6 @@ func main() {
 				continue;
 			}
 
-			<-waitforhid
 			fmt.Printf("starting webrtc proxy\n");
 			proxy = exec.Command(command,
 				"--token",token,

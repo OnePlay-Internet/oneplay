@@ -14,6 +14,7 @@ Set-Location ..
 
 robocopy daemon package/bin daemon.exe
 robocopy sunshine-util package/bin screencoder.exe
+robocopy sunshine-util/build-tools/msys2 package/bin libstdc++-6.dll
 robocopy DevSim/bin package/bin 
 
 Remove-Item "./sunshine-util/screencoder.exe"
