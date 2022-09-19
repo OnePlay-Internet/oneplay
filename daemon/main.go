@@ -136,8 +136,12 @@ func main() {
 	waitforhid := make(chan bool)
 	go func ()  {
 		for {
-			fmt.Printf("starting devsim %d time on port %d\n",count,hidport);
 			devsim = exec.Command("DevSim.exe",fmt.Sprintf( "--urls=http://localhost:%d",hidport));
+			log := make([]byte,0);
+			for _,i := range devsim.Args {
+				log = append(log, append([]byte(i),[]byte(" ")...)...);
+			}
+			fmt.Printf("starting device simulator : %s\n",string(log));
 
 			done := make(chan bool)
 			failed := make(chan bool,2)
@@ -190,11 +194,16 @@ func main() {
 				continue;
 			}
 
-			fmt.Printf("starting webrtc proxy\n");
 			proxy = exec.Command(command,
 				"--token",token,
-				"--hid",fmt.Sprintf("http://localhost:%d",hidport),
+				"--hid",fmt.Sprintf("localhost:%d",hidport),
 				"--engine",engine,);
+
+			log := make([]byte,0);
+			for _,i := range proxy.Args {
+				log = append(log, append([]byte(i),[]byte(" ")...)...);
+			}
+			fmt.Printf("starting webrtc proxy: %s\n",string(log));
 
 			HandleProcess(proxy);
 			time.Sleep(2 * time.Second);
