@@ -172,10 +172,10 @@ func main() {
 		}	
 	} ()
 
+	<-waitforhid
 	go func ()  {
-		<-waitforhid
 		for {
-			time.Sleep(time.Second * 5)
+			time.Sleep(2 * time.Second);
 			resp,err := http.Get(fmt.Sprintf("%s/auth/server/%s",url,name))
 			if err != nil{
 				fmt.Printf("%s\n",err.Error());
@@ -197,16 +197,14 @@ func main() {
 			proxy = exec.Command(command,
 				"--token",token,
 				"--hid",fmt.Sprintf("localhost:%d",hidport),
-				"--engine",engine,);
+				"--engine",engine);
 
 			log := make([]byte,0);
 			for _,i := range proxy.Args {
 				log = append(log, append([]byte(i),[]byte(" ")...)...);
 			}
 			fmt.Printf("starting webrtc proxy: %s\n",string(log));
-
 			HandleProcess(proxy);
-			time.Sleep(2 * time.Second);
 		}
 	} ();
 
